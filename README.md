@@ -21,7 +21,7 @@ python train_flow.py --dataset_name celebahq256 --wandb.name DiT-B-CelebAPixel -
 
 
 | Model                          |FID 50K (ours)| FID 50K ([our diffusion](https://github.com/kvfrans/jax-diffusion-transformer)) | FID 50K (reference paper) |
-| :----------------------------- | :------: | -------: |
+| :----------------------------- | :------: | :-------: | -------: |
 | DiT-B Imagenet256, no CFG      |     70.9     |   70.5   | 43.47  ([DiT](https://arxiv.org/pdf/2212.09748))|
 | DiT-XL Imagenet256, no CFG     |          |    N/A   | 9.62  ([DiT](https://arxiv.org/pdf/2212.09748))|
 | DiT-B Imagenet256, CFG=4       |  15.5    |   17.7   | N/A          |
@@ -32,7 +32,7 @@ python train_flow.py --dataset_name celebahq256 --wandb.name DiT-B-CelebAPixel -
 With flow-matching it's easy to dynamically change the number of denoising steps. Here is how it affects FID.
 ### Imagenet256, CFG=4
 | Denoising Steps  |FID 50K (ours )
-| :----------------| :------: |
+| :----------------| ------: |
 | 500              |   15.5   |
 | 100              |   17.85  |
 | 20               |   17.9   |
@@ -42,7 +42,7 @@ With flow-matching it's easy to dynamically change the number of denoising steps
 
 ### CelebAHQ256
 | Denoising Steps  |FID 50K (ours )
-| :----------------| :------: |
+| :----------------| ------: |
 | 500              |   28.9   |
 | 100              |   28.7   |
 | 20               |   28.87  |
