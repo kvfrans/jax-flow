@@ -39,6 +39,8 @@ python train_flow.py --dataset_name celebahq256 --wandb.name DiT-B-CelebA --mode
 python train_flow.py --dataset_name celebahq256 --wandb.name DiT-B-CelebAPixel --model.depth 12 --model.hidden_size 768 --model.patch_size 8 --model.num_heads 16 --model.mlp_ratio 4 --batch_size 512 --use_stable_vae 0
 ```
 
+
+
 The following numbers compares flow-matching with diffusion under the same network structure, along with to a reference diffusion implementation. 500 denoising steps are used.
 
 | Model                          |FID 50K (ours)| FID 50K ([our diffusion](https://github.com/kvfrans/jax-diffusion-transformer)) | FID 50K (reference paper) |
@@ -79,3 +81,7 @@ DiT-B Imagenet, CFG=4
 
 DiT-B CelebAHQ256
 ![](data/example_celeba.jpg)
+
+
+https://github.com/kvfrans/jax-flow/assets/1484166/0cc2fdbe-46e2-498e-a6d8-6a4310a3037c
+
