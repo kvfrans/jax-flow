@@ -287,6 +287,7 @@ def main(_):
 
     if FLAGS.model.use_stable_vae:
         vae = StableVAE.create()
+        example_obs = vae.encode(jax.random.PRNGKey(0), example_obs)
         vae_rng = flax.jax_utils.replicate(jax.random.PRNGKey(42))
         vae_encode_pmap = jax.pmap(vae.encode)
         vae_decode = jax.jit(vae.decode)
@@ -326,6 +327,7 @@ def main(_):
         cp = Checkpoint(FLAGS.load_dir)
         model = cp.load_model(model)
         print("Loaded model with step", model.model.step)
+        del cp
 
     if FLAGS.fid_stats is not None:
         from utils.fid import get_fid_network, fid_from_stats
@@ -333,6 +335,7 @@ def main(_):
         truth_fid_stats = np.load(FLAGS.fid_stats)
 
     model = flax.jax_utils.replicate(model, devices=jax.local_devices())
+    model = model.replace(rng=jax.random.split(rng, len(jax.local_devices())))
     jax.debug.visualize_array_sharding(model.model.params['FinalLayer_0']['Dense_0']['bias'])
 
     valid_images_small, valid_labels_small = next(dataset_valid)
